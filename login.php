@@ -1,3 +1,38 @@
+<?php
+    require 'config.php';
+    
+
+    // cek login
+    if(isset($_POST['login'])){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // mencocokan database ada atau engga
+        $cekdatabase = mysqli_query($connect, "SELECT * FROM admin where username ='$username' and password='$password'");
+
+        // hitung jumlah data
+        $hitung = mysqli_num_rows($cekdatabase);
+
+        if($hitung > 0){
+            $_SESSION['log'] = 'True';
+            header('location:index.php');
+        } else {
+            header('location:login.php');
+        }
+    }
+
+
+if(!isset($_SESSION['log'])){
+
+} else{
+    header('location:index.php');
+}
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -22,16 +57,16 @@
           <div class="slider-tab"></div>
         </div>
         <div class="form-inner">
-          <form action="index.html" class="login">
+          <form class="login" method="post">
             <div class="field">
-              <input type="text" placeholder="Username" required />
+              <input type="text" placeholder="Username" name="username" />
             </div>
             <div class="field">
-              <input type="password" placeholder="Password" required />
+              <input type="password" placeholder="Password" name="password" />
             </div>
             <div class="field btn">
               <div class="btn-layer"></div>
-              <input type="submit" value="Login" />
+              <input type="submit" value="Login" name="login" />
             </div>
           </form>
           <form action="#" class="user">

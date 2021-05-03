@@ -13,6 +13,11 @@ body {
   place-items: center;
   background: #fff;
 }
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
 ::selection {
   background: black;
   color: #fff;
@@ -232,14 +237,14 @@ nav {
 .nav li div {
   display: none;
   z-index: 1;
-  background: #ed1c24;
+  background: mediumseagreen;
 }
 
 .nav li:hover > div {
   display: inline-block;
 }
 .nav li:hover i {
-  background: #ed1c24;
+  background: mediumseagreen;
 }
 
 .hero {
@@ -257,4 +262,187 @@ nav {
 }
 .credits a {
   margin: 10px;
+}
+
+/* Progresbar */
+ul.progress-bar {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  list-style: none;
+}
+
+li.section {
+  display: inline-block;
+  padding-top: 45px;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 16px;
+  color: gray;
+  vertical-align: top;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+li.section:before {
+  content: "x";
+  position: absolute;
+  top: 2px;
+  left: calc(50% - 15px);
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 17px;
+  line-height: 30px;
+  background: gray;
+}
+.status-bar {
+  height: 2px;
+  background: gray;
+  position: relative;
+  top: 20px;
+  margin: 0 auto;
+}
+.current-status {
+  height: 2px;
+  width: 0;
+  border-radius: 1px;
+  background: mediumseagreen;
+}
+
+@keyframes changeBackground {
+  from {
+    background: gray;
+  }
+  to {
+    background: mediumseagreen;
+  }
+}
+
+li.section.visited:before {
+  content: "\2714";
+  animation: changeBackground 0.5s linear;
+  animation-fill-mode: forwards;
+}
+
+li.section.visited.current:before {
+  box-shadow: 0 0 0 2px mediumseagreen;
+}
+
+/* Tabels */
+
+.tabel-antrian {
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.tabel-antrian thead tr {
+  background-color: mediumseagreen;
+  color: #fff;
+  text-align: center;
+}
+
+.tabel-antrian th,
+.tabel-antrian td {
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.tabel-antrian tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.tabel-antrian tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.tabel-antrian tbody tr:last-of-type {
+  border-bottom: 2px solid mediumseagreen;
+}
+
+/* .tabel-antrian tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+} */
+
+.btn {
+  border-radius: 4px;
+  width: 80px;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+}
+.btn-red {
+  background-color: red;
+}
+
+.btn-selesai {
+  background-color: mediumseagreen;
+}
+
+.btn-proses {
+  background-color: sandybrown;
+}
+
+.btn-tambah {
+  background-color: #000;
+}
+
+/* form */
+
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-tambah {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-tambah input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-tambah input[type="text"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-tambah .btn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.form-tambah .cancel {
+  background-color: red;
+}
+
+.form-tambah .btn:hover,
+.open-button:hover {
+  opacity: 1;
 }
