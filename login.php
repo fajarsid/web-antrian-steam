@@ -8,14 +8,18 @@
         $password = $_POST['password'];
 
         // mencocokan database ada atau engga
-        $cekdatabase = mysqli_query($connect, "SELECT * FROM admin where username ='$username' and password='$password'");
-
+        $cekdatabase = $username == 'admin' ? mysqli_query($connect, "SELECT * FROM admin where username ='$username' and password='$password'") : mysqli_query($connect, "SELECT * FROM users where username ='$username'");
         // hitung jumlah data
         $hitung = mysqli_num_rows($cekdatabase);
 
         if($hitung > 0){
-            $_SESSION['log'] = 'True';
-            header('location:index.php');
+            if($username == 'admin') {
+              $_SESSION['log'] = $username;
+              header('location:index.php');
+            } else {
+              $_SESSION['usr'] = $username;
+              header('location:userView.php');
+            }
         } else {
             header('location:login.php');
         }
@@ -26,6 +30,12 @@ if(!isset($_SESSION['log'])){
 
 } else{
     header('location:index.php');
+}
+
+if(!isset($_SESSION['usr'])){
+
+} else{
+    header('location:userView.php');
 }
 
 ?>
@@ -45,40 +55,20 @@ if(!isset($_SESSION['log'])){
     <p class="tip">Website Antrian Steam</p>
     <div class="wrapper">
       <div class="title-text">
-        <div class="title login">Form Admin</div>
-        <div class="title user">Pelanggan</div>
+        <div class="title login">Selamat Datang</div>
       </div>
       <div class="form-container">
-        <div class="slide-controls">
-          <input type="radio" name="slide" id="login" checked />
-          <input type="radio" name="slide" id="user" />
-          <label for="login" class="slide login">Admin</label>
-          <label for="user" class="slide user">Pelanggan</label>
-          <div class="slider-tab"></div>
-        </div>
         <div class="form-inner">
           <form class="login" method="post">
             <div class="field">
               <input type="text" placeholder="Username" name="username" />
             </div>
             <div class="field">
-              <input type="password" placeholder="Password" name="password" />
+              <input type="password" placeholder="Konfirmasi Username" name="password" />
             </div>
             <div class="field btn">
               <div class="btn-layer"></div>
-              <input type="submit" value="Login" name="login" />
-            </div>
-          </form>
-          <form action="#" class="user">
-            <div class="field">
-              <input type="text" placeholder="Username" required />
-            </div>
-            <!-- <div class="field">
-              <input type="password" placeholder="Password" required />
-            </div> -->
-            <div class="field btn">
-              <div class="btn-layer"></div>
-              <input type="submit" value="Cek" />
+              <input type="submit" value="Start" name="login" />
             </div>
           </form>
         </div>

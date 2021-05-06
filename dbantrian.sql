@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2021 at 12:07 PM
+-- Generation Time: May 06, 2021 at 07:47 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -48,18 +48,11 @@ INSERT INTO `admin` (`idadmin`, `username`, `password`) VALUES
 
 CREATE TABLE `users` (
   `iduser` int(11) NOT NULL,
+  `pros` varchar(12) NOT NULL,
   `username` varchar(50) NOT NULL,
   `jk` varchar(25) NOT NULL,
   `harga` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`iduser`, `username`, `jk`, `harga`) VALUES
-(0, 'gh', 'ghfhf', 5656),
-(3, 'users', 'mobil', 10000);
 
 --
 -- Indexes for dumped tables
@@ -76,6 +69,16 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`iduser`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

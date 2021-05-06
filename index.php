@@ -1,45 +1,10 @@
 <?php
 require 'config.php';
-require 'cek.php';
 
+if(isset($_SESSION['log'])){
 
-
-$username = $jk = $harga = "";
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
-  $username = trim($_POST["username"]);
-  $jk = trim($_POST["jk"]);
-  $harga = trim($_POST["harga"]);
-
-    if($username && $jk && $harga){
-        
-      $sql = "INSERT INTO dbantrian set 
-      username = '$_POST[username]',
-      jk = '$_POST[jk]',
-      harga = '$_POST[harga]'
-      ";
-       
-       if($stmt = mysqli_prepare($connect, $sql)){
-        mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_jk, $param_harga);
-        
-        $param_username = $username;
-        $param_jk = $jk;
-        $param_harga = $harga;
-        
-        if(mysqli_stmt_execute($stmt)){
-          header('location: index.php');
-        } else{
-            echo "Gagal!";
-        }
-
-        mysqli_stmt_close($stmt);
-    }
-  } else {
-    echo "<script>alert('Mohon, isi semua!');</script>";
-  }
-    
-    mysqli_close($connect);
+} else{
+    header('location:login.php');
 }
 
 
@@ -53,7 +18,56 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous" />
+    <style>
+      .button {
+        background-color: #4CAF50; /* Green */
+        border-radius: 4px;
+        color: white;
+        padding: 1px 2px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 2px 1px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+      .button1 {
+        background-color: white; 
+        color: black; 
+        border: 2px solid #4CAF50;
+      }
 
+      .button1:hover {
+        background-color: #4CAF50;
+        color: white;
+      }
+
+            .button2 {
+        background-color: white; 
+        color: black; 
+        border: 2px solid #008CBA;
+      }
+
+      .button2:hover {
+        background-color: #008CBA;
+        color: white;
+      }
+      .button3 {
+        background-color: white; 
+        color: black; 
+        border: 2px solid #f44336;
+      }
+
+      .button3:hover {
+        background-color: #f44336;
+        color: white;
+      }
+      .disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    </style>
     <title>Document</title>
   </head>
   <body>
@@ -109,57 +123,67 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </thead>
         <tbody>
 
-          <tr class="active-row">
-            <td>1</td>
-            <td>Nama Lengkap</td>
-            <td>Mobil</td>
-            <td>60.000</td>
+        <?php
+        $dataUser = mysqli_query($connect, "SELECT * FROM users");
+
+        $i = 1;
+        $hideK = '';
+        $hideS = '';
+        $sub1 = 'submit';
+        $sub2 = 'submit';
+
+        while($data = mysqli_fetch_array($dataUser)){
+            $pros = $data['pros'];
+            $username = $data['username'];
+            $jk = $data['jk'];
+            $harga = $data['harga'];
+            $idb =$data['iduser'];
+
+            if ($pros == "kerjakan") {
+              $hideK = "disabled";
+              $sub1 = "button";
+            } else if ($pros == "selesai") {
+              $hideK = "disabled";
+              $hideS = "disabled";
+              $sub1 = "button";
+              $sub2 = "button";
+            } else {
+              $hideK = '';
+              $hideS = '';
+              $sub1 = 'submit';
+              $sub2 = 'submit';
+            }
+
+        ?>
+        <tr>
+            <td><?=$i++?></td>
+            <td><?=$username;?></td>
+            <td><?=$jk;?></td>
+            <td><?=$harga;?></td>
             <td>
-              <button type="button" class="btn btn-proses">Kerjakan</button>
-              <button type="button" class="btn btn-selesai">Selesai</button>
-              <button type="button" class="btn btn-red">Delete</button>
+            <form method="post">
+            <input type="hidden" name="idb" value="<?=$idb;?>">
+            <input type="hidden" name="pros" value="<?=$pros;?>">
+            <input type="hidden" name="username" value="<?=$username;?>">
+            <input type="hidden" name="jk" value="<?=$jk;?>">
+            <input type="hidden" name="harga" value="<?=$harga;?>">
+            <button class="button button2 <?php echo $hideK ?>" type="<?php echo $sub1 ?>" name="updatePros">Kerjakan</button>
+            <button class="button button1 <?php echo $hideS ?>" type="<?php echo $sub2 ?>" name="updatePros">Selesai</button>
+            <!-- <button class="button button3" type="button" >Delete</button> -->
+            </form>
             </td>
-          </tr>
-          <tr class="active-row">
-            <td>1</td>
-            <td>Nama Lengkap</td>
-            <td>Mobil</td>
-            <td>60.000</td>
-            <td>
-              <button type="button" class="btn btn-proses">Kerjakan</button>
-              <button type="button" class="btn btn-selesai">Selesai</button>
-              <button type="button" class="btn btn-red">Delete</button>
-            </td>
-          </tr>
-          <tr class="active-row">
-            <td>1</td>
-            <td>Nama Lengkap</td>
-            <td>Mobil</td>
-            <td>60.000</td>
-            <td>
-              <button type="button" class="btn btn-proses">Kerjakan</button>
-              <button type="button" class="btn btn-selesai">Selesai</button>
-              <button type="button" class="btn btn-red">Delete</button>
-            </td>
-          </tr>
-          <tr class="active-row">
-            <td>1</td>
-            <td>Nama Lengkap</td>
-            <td>Mobil</td>
-            <td>60.000</td>
-            <td>
-              <button type="button" class="btn btn-proses">Kerjakan</button>
-              <button type="button" class="btn btn-selesai">Selesai</button>
-              <button type="button" class="btn btn-red">Delete</button>
-            </td>
-          </tr>
+        </tr>
+          
+        <?php
+            };
+        ?>
         </tbody>
       </table>
     </div>
 
     <!-- Form -->
     <div class="form-popup" id="myForm" >
-      <form class="form-tambah" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+      <form class="form-tambah" method="post">
         <h3>Tambah Pelanggan</h3>
 
         <label for="nama"><b>Username</b></label>
