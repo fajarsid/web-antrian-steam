@@ -381,17 +381,6 @@ li.section.visited.current:before {
   color: whitesmoke;
   cursor: pointer;
 }
-.btn-red {
-  background-color: red;
-}
-
-.btn-selesai {
-  background-color: mediumseagreen;
-}
-
-.btn-proses {
-  background-color: sandybrown;
-}
 
 .btn-tambah {
   background-color: #000;
@@ -414,7 +403,8 @@ li.section.visited.current:before {
   background-color: white;
 }
 
-.form-tambah input[type="text"] {
+.form-tambah input[type="text"],
+input[type="number"] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -422,7 +412,8 @@ li.section.visited.current:before {
   background: #f1f1f1;
 }
 
-.form-tambah input[type="text"]:focus {
+.form-tambah input[type="text"]:focus,
+input[type="number"]:focus {
   background-color: #ddd;
   outline: none;
 }
