@@ -13,18 +13,20 @@ $connect = mysqli_connect("localhost","root","","dbantrian" );
 
 // Tambah users
    if(isset($_POST['tambahuser'])){
+
     $nama = $_POST['username'];
     $jk = $_POST['jk'];
     $harga = $_POST['harga'];
+    $pros = "menunggu";
 
-    $addtotable = mysqli_query($connect,"insert into users (username, jk, harga) values('$nama','$jk','$harga') ");
+    $addtotable = mysqli_query($connect, "INSERT INTO users (username, pros, jk, harga) values('$nama', '$pros', '$jk','$harga')");
     if($addtotable){
-        header('location:index.php');
+        echo 'alert('.$pros.')';
+        // header('location:index.php');
     } else{
-        echo 'Gagal';
-        header('location:index.php');
+        echo("Error description: " . $connect -> error);
+        echo 'alert("Terjadi Kesalahan Dalam Sistem!")';
     }
-
 };
 
     // update info barang
@@ -36,21 +38,21 @@ $connect = mysqli_connect("localhost","root","","dbantrian" );
         $jk = $_POST['jk'];
         $harga = $_POST['harga'];
 
-        if ($pros == 'menunggu') {
-            $pross = 'kerjakan';
-          } else if ($pros == 'kerjakan') {
-            $pross = "selesai";
+        if ($pros == 'Menunggu') {
+            $pross = 'Proses';
+          } else if ($pros == 'Kerjakan') {
+            $pross = "Selesai";
           } else {
-            echo 'alert("Data Tidak Dti Temukan!")';
+            echo '<script>alert("Data Tidak Di Temukan!")</script>';
           }
 
           $updateData = mysqli_query($connect,"update users set pros='$pross', username='$username', jk='$jk', harga='$harga' where iduser='$idb'");
 
         if($updateData){
-            echo 'alert('.$pross.')';
+            echo '<script>alert('.$pross.')</script>';
             // header('location:index.php');
         } else{
-            echo 'alert("Terjadi Kesalahan Dalam Sistem!")';
+            echo '<script>alert("Terjadi Kesalahan Dalam Sistem!")</script>';
             // header('location:index.php');
         }
     }
