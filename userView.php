@@ -66,9 +66,6 @@ $antri = mysqli_fetch_array($dataUser);
     </nav>
     <!-- Akhir Sidebar -->
 
-    <!-- Progress Bar -->
-    <div class="progress-bar-wrapper"></div>
-    <!-- Akhir Progress Bar -->
 
     <!-- Tabels -->
     <div class="container">
@@ -112,8 +109,5 @@ $antri = mysqli_fetch_array($dataUser);
       </table>
     </div>
 
-    <!-- Js ProgresBar  -->
-    <script src="js/progress-bar.js"></script>
-    <script src="js/app.js"></script>
   </body>
 </html>
