@@ -45,53 +45,40 @@ if(!isset($_SESSION['usr'])){
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Form</title>
-  </head>
-  <body>
-    <p class="tip">Website Antrian Steam</p>
-    <div class="wrapper">
-      <div class="title-text">
-        <div class="title login">Selamat Datang</div>
-      </div>
-      <div class="form-container">
-        <div class="form-inner">
-          <form class="login" method="post">
-            <div class="field">
-              <input type="text" placeholder="Username" name="username" />
+</head>
+
+<body>
+    <div class="container-login">
+        <p class="tip">Website Antrian Steam</p>
+        <div class="wrapper">
+            <div class="title-text">
+                <div class="title login">Selamat Datang</div>
             </div>
-            <div class="field">
-              <input type="password" placeholder="Konfirmasi Username" name="password" />
+            <div class="form-container">
+                <div class="form-inner">
+                    <form class="login" method="post">
+                        <div class="field">
+                            <input type="text" placeholder="Username" name="username" />
+                        </div>
+                        <div class="field">
+                            <input type="password" placeholder="Konfirmasi Username" name="password" />
+                        </div>
+                        <div class="field btn">
+                            <div class="btn-layer"></div>
+                            <input type="submit" value="Start" name="login" />
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="field btn">
-              <div class="btn-layer"></div>
-              <input type="submit" value="Start" name="login" />
-            </div>
-          </form>
         </div>
-      </div>
     </div>
-    <script>
-      const loginText = document.querySelector(".title-text .login");
-      const loginForm = document.querySelector("form.login");
-      const loginBtn = document.querySelector("label.login");
-      const userBtn = document.querySelector("label.user");
-      const userLink = document.querySelector("form .user-link a");
-      userBtn.onclick = () => {
-        loginForm.style.marginLeft = "-50%";
-        loginText.style.marginLeft = "-50%";
-      };
-      loginBtn.onclick = () => {
-        loginForm.style.marginLeft = "0%";
-        loginText.style.marginLeft = "0%";
-      };
-      userLink.onclick = () => {
-        userBtn.click();
-        return false;
-      };
-    </script>
-  </body>
+
+</body>
+
 </html>
