@@ -85,7 +85,7 @@ $antri = mysqli_fetch_array($dataUser);
 
         <?php
 
-        $dataUser = mysqli_query($connect, "SELECT * FROM users where username ='$username'");
+        $dataUser = mysqli_query($connect, "SELECT * FROM users WHERE username ='$username'");
 
         $hide = '';
         while($data = mysqli_fetch_array($dataUser)){

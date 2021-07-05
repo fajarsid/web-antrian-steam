@@ -127,10 +127,6 @@ if(isset($_SESSION['log'])){
         $dataUser = mysqli_query($connect, "SELECT * FROM users");
 
         $i = 1;
-        $hideK = '';
-        $hideS = '';
-        $sub1 = 'submit';
-        $sub2 = 'submit';
 
         while($data = mysqli_fetch_array($dataUser)){
             $pros = $data['pros'];
@@ -138,21 +134,6 @@ if(isset($_SESSION['log'])){
             $jk = $data['jk'];
             $harga = $data['harga'];
             $idb =$data['iduser'];
-
-            if ($pros == "kerjakan") {
-              $hideK = "disabled";
-              $sub1 = "button";
-            } else if ($pros == "selesai") {
-              $hideK = "disabled";
-              $hideS = "disabled";
-              $sub1 = "button";
-              $sub2 = "button";
-            } else {
-              $hideK = '';
-              $hideS = '';
-              $sub1 = 'submit';
-              $sub2 = 'submit';
-            }
 
         ?>
         <tr>
@@ -163,13 +144,17 @@ if(isset($_SESSION['log'])){
             <td>
             <form method="post">
             <input type="hidden" name="idb" value="<?=$idb;?>">
-            <input type="hidden" name="pros" value="<?=$pros;?>">
             <input type="hidden" name="username" value="<?=$username;?>">
-            <input type="hidden" name="jk" value="<?=$jk;?>">
-            <input type="hidden" name="harga" value="<?=$harga;?>">
-            <button class="button button2 <?php echo $hideK ?>" type="<?php echo $sub1 ?>" name="updatePros">Kerjakan</button>
-            <button class="button button1 <?php echo $hideS ?>" type="<?php echo $sub2 ?>" name="updatePros">Selesai</button>
-            <!-- <button class="button button3" type="button" >Delete</button> -->
+            <input type="hidden" name="pros" value="<?=$pros;?>">
+            <?php 
+            if ($pros == "Menunggu") {
+              echo "<button class='button button2' type='submit' value='Kerjakan' name='updatePros'>Kerjakan</button>";
+            } else if ($pros == "Kerjakan") {
+              echo "<button class='button button2' type='submit' value='Selesai' name='updatePros'>Selesai</button>";
+            } else {
+              echo "<button class='button button2'>Selesai</button>";
+            }
+            ?>
             </form>
             </td>
         </tr>
