@@ -87,12 +87,6 @@ if(isset($_SESSION['log'])){
           <div class="animated slideInLeft">Antrian</div>
         </li>
         <li>
-          <a href="datausers.php">
-            <i class="fa fa-user"></i>
-          </a>
-          <div class="animated slideInLeft">Data Pelanggan</div>
-        </li>
-        <li>
           <a href="logout.php">
             <i class="fas fa-sign-out-alt"></i>
           </a>
@@ -101,10 +95,6 @@ if(isset($_SESSION['log'])){
       </ul>
     </nav>
     <!-- Akhir Sidebar -->
-
-    <!-- Progress Bar -->
-    <div class="progress-bar-wrapper"></div>
-    <!-- Akhir Progress Bar -->
 
     <!-- Tabels -->
     <div class="container">
@@ -196,8 +186,5 @@ if(isset($_SESSION['log'])){
         document.getElementById("myForm").style.display = "none";
       }
     </script>
-    <!-- Js ProgresBar  -->
-    <script src="js/progress-bar.js"></script>
-    <script src="js/app.js"></script>
   </body>
 </html>

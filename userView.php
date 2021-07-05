@@ -47,7 +47,7 @@ $antri = mysqli_fetch_array($dataUser);
   </head>
   <body>
     <!-- Sidebar -->
-    <h4>Selamat Datang User <?php echo $_SESSION['usr']?></h4>
+    <h4>Selamat Datang <?php echo $_SESSION['usr']?></h4>
     <nav>
       <ul class="nav">
         <li>
@@ -66,9 +66,6 @@ $antri = mysqli_fetch_array($dataUser);
     </nav>
     <!-- Akhir Sidebar -->
 
-    <!-- Progress Bar -->
-    <div class="progress-bar-wrapper"></div>
-    <!-- Akhir Progress Bar -->
 
     <!-- Tabels -->
     <div class="container">
@@ -101,7 +98,7 @@ $antri = mysqli_fetch_array($dataUser);
             <td><?=$jk;?></td>
             <td><?=$harga;?></td>
             <td>
-            <button class="button button1"><?=$pros;?></button>
+            <button class="button button1" ><?=$pros;?></button>
             </td>
         </tr>
           
@@ -112,8 +109,5 @@ $antri = mysqli_fetch_array($dataUser);
       </table>
     </div>
 
-    <!-- Js ProgresBar  -->
-    <script src="js/progress-bar.js"></script>
-    <script src="js/app.js"></script>
   </body>
 </html>

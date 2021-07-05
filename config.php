@@ -9,6 +9,7 @@
     
 // Tambah users
    if(isset($_POST['tambahuser'])){
+
     $nama = $_POST['username'];
     $jk = $_POST['jk'];
     $harga = $_POST['harga'];
@@ -28,7 +29,6 @@
         $message = "Silahkan Gunakan Username Yang Lain!";
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
-
 };
 
     // update info barang
@@ -38,7 +38,6 @@
         $setPro = $_POST['updatePros'];
         $username = $_POST['username'];
 
-
         if ($pros == 'Menunggu' && $setPro == 'Kerjakan') {
             $updateData = mysqli_query($connect,
             "UPDATE users set pros = '$setPro' WHERE iduser = '$idb'");
@@ -46,7 +45,7 @@
             $updateData = mysqli_query($connect,
             "UPDATE users set pros = '$setPro' WHERE iduser = '$idb'");
           } else {
-            echo 'alert("Data Tidak Dti Temukan!")';
+            echo '<script>alert("Data Tidak Di Temukan!")</script>';
           }
 
         if($updateData){
