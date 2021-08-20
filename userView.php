@@ -9,9 +9,31 @@ if(isset($_SESSION['usr'])){
     header('location:login.php');
 }
 
+//class object
+class antrian {
+ 
+  // property class
+  var $id;
+  var $pros;
+  var $user;
+  var $jk;
+  var $harga;
+
+}
+
+// buat objek dari class
+$antri = new antrian();
+
 $username = $_SESSION['usr'];
 $dataUser = mysqli_query($connect, "SELECT * FROM users where username ='$username'");
-$antri = mysqli_fetch_array($dataUser);
+$row = mysqli_fetch_row($dataUser);
+
+// set property
+$antri->id=$row[0];
+$antri->pros=$row[1];
+$antri->user=$row[2];
+$antri->jk=$row[3];
+$antri->harga=$row[4];
 
 ?> 
 
@@ -47,7 +69,8 @@ $antri = mysqli_fetch_array($dataUser);
   </head>
   <body>
     <!-- Sidebar -->
-    <h4>Selamat Datang <?php echo $_SESSION['usr']?></h4>
+    <!-- pemanggilan property -->
+    <h4>Selamat Datang <?php echo $antri->user?></h4>
     <nav>
       <ul class="nav">
         <li>
@@ -79,32 +102,17 @@ $antri = mysqli_fetch_array($dataUser);
           </tr>
         </thead>
         <tbody>
-
-        <?php
-
-        $dataUser = mysqli_query($connect, "SELECT * FROM users WHERE username ='$username'");
-
-        $hide = '';
-        while($data = mysqli_fetch_array($dataUser)){
-            $pros = $data['pros'];
-            $username = $data['username'];
-            $jk = $data['jk'];
-            $harga = $data['harga'];
-            $idb =$data['iduser'];
-
-        ?>
-         <tr>
-            <td><?=$username;?></td>
-            <td><?=$jk;?></td>
-            <td><?=$harga;?></td>
-            <td>
-            <button class="button button1" ><?=$pros;?></button>
-            </td>
-        </tr>
-          
-        <?php
-            };
-        ?>
+          <!-- pemanggilan property -->
+          <?php 
+           echo "<tr>";
+           echo "<td>$antri->user</td>";
+           echo "<td>$antri->jk</td>";
+           echo "<td>$antri->harga</td>";
+           echo "<td>";
+           echo "<button class=button button1>$antri->pros</button>";
+           echo "</td>";
+           echo "</tr>"
+          ?>
         </tbody>
       </table>
     </div>
